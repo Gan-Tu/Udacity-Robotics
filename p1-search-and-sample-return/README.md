@@ -91,6 +91,7 @@ def perspect_transform(img, src, dst):
 For example,
 
 ![Before perspective transform] [image1]
+
 ![After perspective transform] [image4]
 
 The `color_thresh` function will return a binary image where it is 1 when that pixel color value in the `img` is above the given RGB threshold, if `above` parameter is set to `True`. 
@@ -116,6 +117,7 @@ The default RBG value `R=G=B=160` is found to perform well in terms of determing
 For example, 
 
 ![Before color threshold] [image4]
+
 ![After color threshold] [image6]
 
 To find obstacle terrain, which is just the non-navigable terrain, we just set `above=False`. 
@@ -141,6 +143,7 @@ def rock_thresh(img):
 For example,
 
 ![Rock Image] [image2]
+
 ![Rock Threshold] [image8]
 
 #### 2. Mapping 
@@ -201,7 +204,7 @@ if roll < 0.2 or roll > 358:
         Rover.worldmap[navigable_y_world, navigable_x_world, 2] += 255
 ```
  
-Second, I update a vision map so users can see what Rover is perceiving, where red indicates obstacles; blue indicates navigable terrain, and green indicates the rock.
+Second, I update a vision map so users can see what Rover is perceiving, where red indicates obstacles; blue indicates navigable terrain, and green/yellow indicates the rock.
 
 ```
 Rover.vision_image[:,:,0] = obstacle_threshed * 255
