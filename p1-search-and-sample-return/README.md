@@ -90,9 +90,9 @@ def perspect_transform(img, src, dst):
 
 For example,
 
-![Before perspective transform] [image1]
+![Before perspective transform][image1]
 
-![After perspective transform] [image4]
+![After perspective transform][image4]
 
 The `color_thresh` function will return a binary image where it is 1 when that pixel color value in the `img` is above the given RGB threshold, if `above` parameter is set to `True`. 
 
@@ -116,9 +116,9 @@ The default RBG value `R=G=B=160` is found to perform well in terms of determing
 
 For example, 
 
-![Before color threshold] [image4]
+![Before color threshold][image4]
 
-![After color threshold] [image6]
+![After color threshold][image6]
 
 To find obstacle terrain, which is just the non-navigable terrain, we just set `above=False`. 
 
@@ -142,9 +142,9 @@ def rock_thresh(img):
 
 For example,
 
-![Rock Image] [image2]
+![Rock Image][image2]
 
-![Rock Threshold] [image8]
+![Rock Threshold][image8]
 
 #### 2. Mapping 
 The `process_image(img)` function takes advantage of all the image analysis functions described above and performs the mapping. It maps identified pixels navigable terrain, obstacles and rock samples into a worldmap. 
@@ -183,7 +183,7 @@ These are accomplished by mainly two supporting functions: `rover_coords` which 
 
 Here is an example of the entire process:
 
-![Full Mapping Process] [image7]
+![Full Mapping Process][image7]
 
 ### Autonomous Navigation and Mapping
 
