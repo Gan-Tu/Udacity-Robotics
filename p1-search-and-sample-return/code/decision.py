@@ -35,12 +35,12 @@ def decision_step(Rover):
                 Rover.brake = 0
                 Rover.steer = np.clip(mean_without_outlier(Rover.nav_angles * 180/np.pi), -15, 15)
                 if len(Rover.nav_angles) >= Rover.random_direction_angles:
-                    if np.random.random() <= 0.2:
+                    if np.random.random() <= 0.4:
                         # print("get random direction because angle: ", len(Rover.nav_angles))
                         if Rover.steer >= 0:
-                            Rover.steer = np.clip(np.random.normal(Rover.steer - 3, 3), -15, 15)
+                            Rover.steer = np.clip(np.random.normal(Rover.steer - 5, 5), -15, 15)
                         else:
-                            Rover.steer = np.clip(np.random.normal(Rover.steer + 3, 3), -15, 15)
+                            Rover.steer = np.clip(np.random.normal(Rover.steer + 5, 5), -15, 15)
                 
 
             # If there's a lack of navigable terrain pixels then go to 'stop' mode
@@ -54,7 +54,7 @@ def decision_step(Rover):
                     Rover.steer = 0
                     Rover.mode = 'stop'
 
-            if Rover.vel <= 0.2 and not Rover.is_stuck:
+            if Rover.vel <= 0.2 and Rover.vel >= -0.2 and not Rover.is_stuck:
                 if Rover.start_stuck_time is None:
                     # print("starting counting stuck time")
                     Rover.start_stuck_time = Rover.total_time
@@ -62,17 +62,22 @@ def decision_step(Rover):
                     # print("total time stuck", Rover.total_time - Rover.start_stuck_time)
                     Rover.is_stuck = True
             elif Rover.is_stuck and (Rover.throttle != 0 or Rover.brake != 0):
-                if Rover.vel >= 0.2:
+                if Rover.vel >= 0.5 or Rover.vel <= -0.5:
                     Rover.start_stuck_time = None
                     Rover.is_stuck = False
+                    Rover.steer = np.clip(mean_without_outlier(Rover.nav_angles * 180/np.pi), -15, 15)
                 else:
                     # print("stuck so i will turn")
                     Rover.brake = 0
+                    Rover.throttle = -Rover.throttle_set
+                    Rover.steer = 0
                     if ((Rover.total_time - Rover.start_stuck_time) // Rover.stuck_turning_waiting_time) % 2 == 0:
-                        Rover.throttle = Rover.throttle_set
-                    else:
+                        Rover.steer = np.clip(-(Rover.steer + 5), -15, 15)
+                    if ((Rover.total_time - Rover.start_stuck_time) // Rover.stuck_turning_waiting_time) % 5 == 0:
                         Rover.throttle = 0
-                    Rover.steer = np.clip(-(Rover.steer + 5), -15, 15)
+                    if ((Rover.total_time - Rover.start_stuck_time) // Rover.stuck_turning_waiting_time) % 6 == 0:
+                        Rover.throttle = Rover.throttle_set
+
             else:
                 Rover.is_stuck = False
                 Rover.start_stuck_time = None
@@ -130,10 +135,7 @@ def decision_step(Rover):
                 Rover.steer = 0
                 Rover.mode = 'stop'
         elif Rover.rock_angles is not None and len(Rover.rock_angles) >= Rover.rock_detected_angles and not Rover.is_stuck:
-            target = np.clip(np.mean(Rover.rock_angles * 180/np.pi), -15, 15)
-            Rover.steer = target
-            # Rover.is_stuck = False
-            # Rover.start_stuck_time = None
+            Rover.steer = np.clip(np.median(Rover.rock_angles * 180/np.pi), -15, 15)
             if Rover.vel >= 1:
                 # print("STOPPING for TO ROCKS")
                 Rover.throttle = 0

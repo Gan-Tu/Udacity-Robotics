@@ -71,7 +71,7 @@ python drive_rover.py
 
 Then, double click to open the simulator you downloaded above. 
 
-To produce the results I have, it is recommended to use 840x524 resolution and "Good" graphic quality.
+To produce the results I have, it is recommended to use 800x600 resolution and "Fantastic" graphic quality.
 
 
 
@@ -200,8 +200,8 @@ First, I only update the worldmap when Rover has a normal view. In other words, 
 
 ```
 roll, pitch = Rover.roll, Rover.pitch
-if roll < 0.2 or roll > 358:
-    if pitch < 0.2 or pitch > 358:
+if roll <= 0.3 or roll >= 358:
+    if pitch <= 0.3 or pitch >= 358:
         Rover.worldmap[obstacle_y_world, obstacle_x_world, 0] += 255
         Rover.worldmap[rock_y_world, rock_x_world, 1] += 255
         Rover.worldmap[navigable_y_world, navigable_x_world, 2] += 255
@@ -236,7 +236,7 @@ There is a moderate amount of code written for this step, so I will only explain
 
 1. If there is still more navigable terrin to explore and it hasn't reached the max velocity `2.5 m/s` I defined, I let Rover keep accelerating at `0.25 m/s^2` until it has reached its max velocity. Otherwise, I stop the Rover and swtich to 'stop' mode.
 2. When moving, I set the steer to the mean of navigable angles with outliers (i.e. outside 25-75% IQR) excluded, clipped to reside between (-15 and 15 -- the Rover limit). By doing this, Rover will always try to go in the direction in the middle of navigable terrain, and also smoothly without constatly turning left and right for a tiny amount.
-3. When the navigable angles are big and wide enough -- the boundry is determined by a parameter called `random_direction_angles`, I set  the steer to a random angle sampled from a normal distribution (centered at the navigable angles mean, plus or minus 3 based on the direction it's going right now, with standard deviation of 3) with the probability of 20%. The **rationale** behind this complicated random sampling is to add randomness so Rover has the chance of going to different places when come to a big open space, instead of always going to the same direction and never be able to explore other places.
+3. When the navigable angles are big and wide enough -- the boundry is determined by a parameter called `random_direction_angles`, I set  the steer to a random angle sampled from a normal distribution (centered at the navigable angles mean, plus or minus 3 based on the direction it's going right now, with standard deviation of 3) with the probability of 40%. The **rationale** behind this complicated random sampling is to add randomness so Rover has the chance of going to different places when come to a big open space, instead of always going to the same direction and never be able to explore other places.
 
 Here is an example of the code used for idea 3:
 
@@ -252,7 +252,7 @@ def mean_without_outlier(arr):
     
 Rover.steer = np.clip(mean_without_outlier(Rover.nav_angles * 180/np.pi), -15, 15)
 if len(Rover.nav_angles) >= Rover.random_direction_angles:
-    if np.random.random() <= 0.2:
+    if np.random.random() <= 0.4:
         if Rover.steer >= 0:
             Rover.steer = np.clip(np.random.normal(Rover.steer - 3, 3), -15, 15)
         else:
@@ -273,12 +273,11 @@ if len(Rover.nav_angles) >= Rover.random_direction_angles:
 
 **Getting Unstuck**
 
-Someimes a Rover can get stuck for various reasons. Whenever the Rover is at a speed slower than 0.2 but in 'forward' mode, I start counting how long it has been slower than 0.2 speed. If it has exceeded 4 seconds, I let Rover turn the steer more and more, switch between postive direction and negataive direction every 4 seconds, and accelerating or not accelerating every 4 seconds as well, until it has gotten unstuck. 
-
+Someimes a Rover can get stuck for various reasons. Whenever the Rover is at a speed slower than 0.2 larger than -0.2 (aka. going backwards) but in 'forward' mode, I start counting how long it has been slower than 0.2 speed. Every two seconds, I let Rover turn the steer more and more, switch between postive direction and negataive direction, and accelerating backwards. I stop the throttle and turn again before accelerating if Rover is trapped for more than 5 seconds.
 
 #### 3. Autonomous Mode, Results, and Potential Improvements
 
-The simulator I used for development is: **840x524 resolution, "Good" graphic quality, and 12 frames per second.** Under these settings, I only need to swtich to manual mode to get Rover unstuck in very rare occasions, while getting 60.1% of the world mapped at 80.7% fidelity. Rover is also able to pick up 4 rocks under only 438 seconds. 
+The simulator I used for development is: **800x600 resolution, "Fantastic" graphic quality, and 22 frames per second.** Under these settings, I only need to swtich to manual mode to get Rover unstuck in very rare occasions, while getting 60.1% of the world mapped at 80.7% fidelity. Rover is also able to pick up 4 rocks under only 438 seconds. 
 
 ![Autonomous Result][image5]
 

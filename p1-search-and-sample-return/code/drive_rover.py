@@ -78,7 +78,7 @@ class RoverState():
         self.send_pickup = False # Set to True to trigger rock pickup
         ############# Added by Me ################
         self.rock_angles = None # Angles of rock pixels
-        self.rock_detected_angles = 18
+        self.rock_detected_angles = 15
         self.random_direction_angles = 23000
         self.start_stuck_time = None
         self.stuck_turning_waiting_time = 4
