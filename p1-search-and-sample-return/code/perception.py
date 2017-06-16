@@ -137,8 +137,8 @@ def perception_step(Rover):
     rock_x_world, rock_y_world = pix_to_world(rock_x_rover, rock_y_rover, xpos, ypos, yaw, world_size, scale)
     navigable_x_world, navigable_y_world = pix_to_world(navigable_x_rover, navigable_y_rover, xpos, ypos, yaw, world_size, scale)
     # 7) Update Rover worldmap (to be displayed on right side of screen)
-    if roll <= 0.8 or roll >= 356:
-        if pitch <= 0.8 or pitch >= 356:
+    if roll <= 0.7 or roll >= 359.5:
+        if pitch <= 0.7 or pitch >= 359.5:
             Rover.worldmap[obstacle_y_world, obstacle_x_world, 0] += 255
             Rover.worldmap[rock_y_world, rock_x_world, 1] += 255
             Rover.worldmap[navigable_y_world, navigable_x_world, 2] += 255
