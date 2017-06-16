@@ -24,6 +24,9 @@ This project is inspired by the [NASA sample return challenge](https://www.nasa.
 ## Get the Code 
 You can download this folder of code [here](https://tugan0329.bitbucket.io/downloads/udacity/robotics/search-and-sample-return/p1-search-and-sample-return.zip)
 
+## Watch the Autonomous Mode Video
+You can watch a demo run of Rover navigating the simulated environment and searching for rocks autonomously [here](https://youtu.be/IRTw2f-onKQ).
+
 ## Getting the Simulator
 
 Use the links below to get the simulator version that's appropriate for your operating system.
@@ -196,12 +199,12 @@ The perception of the Rover is handled in the `perception_step()` (at the bottom
 
 This step is highly similar to the `process_image` described above in the "Notebook Analysis - Mapping" section. There are only three more modifications.
 
-First, I only update the worldmap when Rover has a normal view. In other words, not when it is stuck in a rock, beyond the simulated world boundry, or got flipped and looking at the sky. I accomplish this by updating the world map only when Rover roll and pitch are both smaller than `0.8` or bigger than `356`.
+First, I only update the worldmap when Rover has a normal view. In other words, not when it is stuck in a rock, beyond the simulated world boundry, or got flipped and looking at the sky. I accomplish this by updating the world map only when Rover roll and pitch are both smaller than `0.7` or bigger than `359.5`.
 
 ```
 roll, pitch = Rover.roll, Rover.pitch
-if roll <= 0.8 or roll >= 356:
-    if pitch <= 0.8 or pitch >= 356:
+if roll <= 0.7 or roll >= 359.5:
+        if pitch <= 0.7 or pitch >= 359.5:
         Rover.worldmap[obstacle_y_world, obstacle_x_world, 0] += 255
         Rover.worldmap[rock_y_world, rock_x_world, 1] += 255
         Rover.worldmap[navigable_y_world, navigable_x_world, 2] += 255
