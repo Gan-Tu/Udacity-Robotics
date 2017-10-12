@@ -1,8 +1,8 @@
 [![Udacity Robotics Nanodegree](http://tugan0329.bitbucket.io/imgs/robond.svg)](https://www.udacity.com/robotics)
 
-# Search and Sample Return
+![header img](misc/readme.png)
 
-![rover][image3]
+# Search and Sample Return
 
 [//]: # (Image References)
 
@@ -28,6 +28,8 @@ You can download this folder of code [here](https://tugan0329.bitbucket.io/downl
 
 ## Watch the Autonomous Mode Video
 You can watch a demo run of Rover navigating the simulated environment and searching for rocks autonomously [here](https://youtu.be/IRTw2f-onKQ).
+
+![rover][image3]
 
 ## Getting the Simulator
 

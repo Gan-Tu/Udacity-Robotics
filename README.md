@@ -1,3 +1,9 @@
+[![Udacity Robotics Nanodegree](http://tugan0329.bitbucket.io/imgs/robond.svg)](https://www.udacity.com/robotics)
+
+
+![readme picture](misc/readme.png)
+
+
 # Udacity-Robotics
 These are work and projects I developed as a part of [Udacity Robotics Nanodegree Program](https://www.udacity.com/robotics).
 
