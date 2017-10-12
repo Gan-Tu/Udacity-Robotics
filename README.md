@@ -1,4 +1,4 @@
-[![Udacity Robotics Nanodegree](http://tugan0329.bitbucket.io/imgs/robond.svg)](https://www.udacity.com/robotics)
+[![Udacity Robotics Nanodegree](http://tugan0329.bitbucket.io/imgs/github/robond.svg)](https://www.udacity.com/robotics)
 
 
 ![readme picture](misc/readme.png)
