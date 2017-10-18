@@ -29,7 +29,7 @@ You can download this folder of code [here](https://tugan0329.bitbucket.io/downl
 ## Watch the Autonomous Mode Video
 You can watch a demo run of Rover navigating the simulated environment and searching for rocks autonomously [here](https://youtu.be/IRTw2f-onKQ).
 
-![rover][image3]
+![rover](misc/rover_demo.gif)
 
 ## Getting the Simulator
 
