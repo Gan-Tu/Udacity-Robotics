@@ -8,7 +8,12 @@ These are work and projects I developed as a part of [Udacity Robotics Nanodegre
 ## Relevant Projects
 You can also view my [self driving car projects](https://github.com/Michael-Tu/Udacity-Self-Driving-Car) and [computer vision projects](https://github.com/Michael-Tu/Udacity-Computer-Vision). 
 
-These projects include but not limited to traffic sign classifier, end-to-end learning/behavioral-cloning, lane line detection, and vehicle detection & tracking.
+In this project, I'll:
+
+- write code to autonautonomously map a simulated environment, search for samples of interest, and pick them up. 
+- use Kinematics and ROS to manipulate a robotic arm in simulation with six degrees of freedom to pick up an object from one location and place it in another without running into obstacles. 
+- program a Willow Garage, two-armed PR2 robot to locate an object in a cluttered environment and then relocate it to a new location
+- train a deep neural network to identify and track a target in simulation and then issue commands to a drone to follow that target. 
 
 
 ## Environment Setup
