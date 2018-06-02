@@ -6,7 +6,7 @@
 These are work and projects I developed as a part of [Udacity Robotics Nanodegree Program](https://www.udacity.com/robotics).
 
 ## Relevant Projects
-You can also view my [self driving car projects](https://github.com/Michael-Tu/Udacity-Self-Driving-Car). 
+You can also view my [self driving car projects](https://github.com/Michael-Tu/Udacity-Self-Driving-Car) and [computer vision projects](https://github.com/Michael-Tu/Udacity-Computer-Vision). 
 
 These projects include but not limited to traffic sign classifier, end-to-end learning/behavioral-cloning, lane line detection, and vehicle detection & tracking.
 
