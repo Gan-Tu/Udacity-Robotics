@@ -1,0 +1,3 @@
+[submodule "RoboND-Drone-Follow-Me"]
+	path = p4-drone-follow-me
+	url = https://github.com/Michael-Tu/RoboND-Drone-Follow-Me.git
