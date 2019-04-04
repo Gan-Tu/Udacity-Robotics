@@ -1,3 +1,6 @@
 [submodule "RoboND-Drone-Follow-Me"]
 	path = p4-drone-follow-me
 	url = https://github.com/Michael-Tu/RoboND-Drone-Follow-Me.git
+[submodule "RoboND-Search-and-Sample-Return"]
+	path = p1-search-and-sample-return
+	url = https://github.com/Michael-Tu/RoboND-Search-and-Sample-Return.git
